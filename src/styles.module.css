@@ -1,9 +1,21 @@
-/* add css module styles here (optional) */
+html,
+body {
+  cursor: none;
+}
 
-.test {
-  margin: 2em;
-  padding: 0.5em;
-  border: 2px solid #000;
-  font-size: 2em;
-  text-align: center;
+.cursor {
+  display: none;
+}
+
+@media (any-pointer: fine) {
+  .cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+    pointer-events: none;
+    z-index: 1000000000;
+  }
+  .cursor__inner {
+  }
 }

@@ -1,7 +1,7 @@
-import { ExampleComponent } from '.'
+import SmoothCursor from '.'
 
-describe('ExampleComponent', () => {
+describe('SmoothCursorComponent', () => {
   it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
+    expect(SmoothCursor).toBeTruthy()
   })
 })

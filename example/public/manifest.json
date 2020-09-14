@@ -1,6 +1,6 @@
 {
-  "short_name": "smooth-cursor",
-  "name": "smooth-cursor",
+  "short_name": "react-smooth-cursor",
+  "name": "react-smooth-cursor",
   "icons": [
     {
       "src": "favicon.ico",
