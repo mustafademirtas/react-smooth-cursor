@@ -1,8 +1,8 @@
 {
   "name": "react-smooth-cursor",
   "version": "1.0.0",
-  "description": "Smooth cursor library",
-  "author": "mustafademirtas",
+  "description": "React smooth cursor library",
+  "author": "Mustafa Demirtaş",
   "license": "MIT",
   "repository": "mustafademirtas/react-smooth-cursor",
   "main": "dist/index.js",
@@ -24,7 +24,8 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
-    "react": "^16.0.0"
+    "react": "^16.0.0",
+    "gsap": "^3.5.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -55,12 +56,10 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "gsap": "^3.5.1"
   },
   "files": [
     "dist"
-  ],
-  "dependencies": {
-    "gsap": "^3.5.1"
-  }
+  ]
 }
