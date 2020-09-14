@@ -29,8 +29,34 @@ import 'react-smooth-cursor/dist/index.css'
 
 class Example extends Component {
   render() {
-    return <SmoothCursor />
+    return
+      <SmoothCursor
+        // Required
+        bindClasses={['animateOnClassName']}
+
+        // Optionals
+        fillColor='#e20c6a'
+        strokeColor='#000'
+        strokeWidth={1}
+        cursorRadius={25}
+      />
   }
+}
+
+// or
+
+const Example = ()=> {
+  return
+      <SmoothCursor
+        // Required
+        bindClasses={['animateOnClassName']}
+
+        // Optionals
+        fillColor='#e20c6a'
+        strokeColor='#000'
+        strokeWidth={1}
+        cursorRadius={25}
+      />;
 }
 ```
 
