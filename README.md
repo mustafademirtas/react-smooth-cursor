@@ -5,14 +5,14 @@
 [![NPM](https://img.shields.io/npm/v/react-smooth-cursor.svg)](https://www.npmjs.com/package/react-smooth-cursor) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
-
 ```bash
-npm install react-smooth-cursor
+yarn add react-smooth-cursor
 ```
+
 or
 
 ```bash
-yarn add react-smooth-cursor
+npm install react-smooth-cursor
 ```
 
 ## Usage
