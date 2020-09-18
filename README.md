@@ -30,8 +30,9 @@ import 'react-smooth-cursor/dist/index.css'
 
 class Example extends Component {
   render() {
+    (
     return
-    ;<SmoothCursor
+    <SmoothCursor
       // Required
       bindClasses={['animateOnClassName']}
       // Optionals
@@ -40,14 +41,15 @@ class Example extends Component {
       strokeWidth={1}
       cursorRadius={25}
     />
+    )
   }
 }
 
 // or
 
 const Example = () => {
-  return
-  ;<SmoothCursor
+  return(
+  <SmoothCursor
     // Required
     bindClasses={['animateOnClassName']}
     // Optionals
@@ -56,6 +58,7 @@ const Example = () => {
     strokeWidth={1}
     cursorRadius={25}
   />
+  )
 }
 ```
 
