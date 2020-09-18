@@ -9,6 +9,7 @@
 [![NPM](https://img.shields.io/npm/v/react-smooth-cursor.svg)](https://www.npmjs.com/package/react-smooth-cursor) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![Build Status](https://travis-ci.org/mustafademirtas/react-smooth-cursor.svg?branch=master)](https://travis-ci.org/mustafademirtas/react-smooth-cursor)
 
 ## Install
+
 ```bash
 yarn add react-smooth-cursor
 ```
@@ -30,35 +31,56 @@ import 'react-smooth-cursor/dist/index.css'
 class Example extends Component {
   render() {
     return
-      <SmoothCursor
-        // Required
-        bindClasses={['animateOnClassName']}
-
-        // Optionals
-        fillColor='#e20c6a'
-        strokeColor='#000'
-        strokeWidth={1}
-        cursorRadius={25}
-      />
+    ;<SmoothCursor
+      // Required
+      bindClasses={['animateOnClassName']}
+      // Optionals
+      fillColor='#e20c6a'
+      strokeColor='#000'
+      strokeWidth={1}
+      cursorRadius={25}
+    />
   }
 }
 
 // or
 
-const Example = ()=> {
+const Example = () => {
   return
-      <SmoothCursor
-        // Required
-        bindClasses={['animateOnClassName']}
-
-        // Optionals
-        fillColor='#e20c6a'
-        strokeColor='#000'
-        strokeWidth={1}
-        cursorRadius={25}
-      />;
+  ;<SmoothCursor
+    // Required
+    bindClasses={['animateOnClassName']}
+    // Optionals
+    fillColor='#e20c6a'
+    strokeColor='#000'
+    strokeWidth={1}
+    cursorRadius={25}
+  />
 }
 ```
+
+## General Props
+
+| Option        | Type      | Description                                  | Default     |
+| ------------- | --------- | -------------------------------------------- | ----------- |
+| `bindClasses` | string[ ] | Css classes which cursor will be animated on | `undefined` |
+| `shape`       | string    | Shape of cursor ("circle" or "square")       | `circle`    |
+| `fillColor`   | string    | Inside color of cursor                       | `#fff`      |
+| `strokeColor` | string    | Border color of cursor                       | `#000`      |
+| `strokeWidth` | number    | Border width of cursor                       | `1`         |
+| `smoothness`  | number    | Smooth movement value of cursor (0 - 1.0)    | `0.2`       |
+
+## Circle Cursor Props
+
+| Option         | Type   | Description   | Default |
+| -------------- | ------ | ------------- | ------- |
+| `circleRadius` | number | Cursor radius | `25`    |
+
+## Square Cursor Props
+
+| Option       | Type   | Description | Default |
+| ------------ | ------ | ----------- | ------- |
+| `squareSize` | number | Square size | `25`    |
 
 ## License
 

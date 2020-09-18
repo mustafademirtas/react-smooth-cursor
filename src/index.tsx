@@ -3,6 +3,7 @@ import Cursor from './Cursor'
 import styles from './styles.module.css'
 
 const bindCursorEvent = (cursor: Cursor, bindClasses: string[]) => {
+  if (!bindClasses) return
   bindClasses.forEach((bindClass) => {
     document.querySelectorAll('.' + bindClass).forEach((item) => {
       item.addEventListener('mouseenter', cursor.enter)
@@ -14,6 +15,7 @@ const bindCursorEvent = (cursor: Cursor, bindClasses: string[]) => {
 }
 
 const unbindCursorEvent = (cursor: Cursor, bindClasses: string[]) => {
+  if (!bindClasses) return
   bindClasses.forEach((bindClass) => {
     document.querySelectorAll('.' + bindClass).forEach((item) => {
       item.removeEventListener('mouseenter', cursor.enter)
@@ -25,27 +27,37 @@ const unbindCursorEvent = (cursor: Cursor, bindClasses: string[]) => {
 }
 
 export interface SmoothCursorProps {
-  bindClasses: string[]
+  shape?: 'circle' | 'square'
+  bindClasses?: string[]
   fillColor?: string
   strokeColor?: string
   strokeWidth?: number
-  cursorRadius?: number
+  smoothness?: number
+
+  circleRadius?: number
+  squareSize?: number
 }
 
 const SmoothCursor = ({
+  shape,
   bindClasses,
   fillColor,
   strokeColor,
   strokeWidth,
-  cursorRadius
+  circleRadius,
+  squareSize,
+  smoothness
 }: SmoothCursorProps) => {
   const cursorRef = React.useRef<SVGSVGElement>()
-  const rad = cursorRadius || 25
+  const mRadius = circleRadius || 25
+  const mSize = squareSize || 25
+  const mShape = shape || 'circle'
+  const mSmoothness = smoothness || 0.2
 
   React.useEffect(() => {
     if (!cursorRef) return null
 
-    const mCursor = new Cursor(cursorRef.current)
+    const mCursor = new Cursor(cursorRef.current, mSmoothness)
 
     bindCursorEvent(mCursor, bindClasses)
     return () => {
@@ -53,25 +65,71 @@ const SmoothCursor = ({
     }
   }, [cursorRef])
 
-  return (
-    <svg
-      ref={cursorRef}
-      className={`${styles.cursor} cursor`}
-      width={`${rad}`}
-      height={`${rad}`}
-      viewBox={`0 0 ${rad} ${rad}`}
-    >
-      <circle
-        className={`${styles.cursor} cursor__inner`}
-        cx={`${rad / 2}`}
-        cy={`${rad / 2}`}
-        r={`${rad / 4}`}
-        fill={fillColor || '#000'}
-        stroke={strokeColor || '#000'}
-        strokeWidth={strokeWidth || 1}
-      />
-    </svg>
-  )
+  const renderShape = () => {
+    switch (mShape) {
+      case 'circle':
+        return (
+          <svg
+            ref={cursorRef}
+            className={`${styles.cursor} cursor`}
+            width={`${mRadius}`}
+            height={`${mRadius}`}
+            viewBox={`0 0 ${mRadius} ${mRadius}`}
+          >
+            <circle
+              className={`${styles.cursor} cursor__inner`}
+              cx={`${mRadius / 2}`}
+              cy={`${mRadius / 2}`}
+              r={`${mRadius / 4}`}
+              fill={fillColor || '#fff'}
+              stroke={strokeColor || '#000'}
+              strokeWidth={strokeWidth || 1}
+            />
+          </svg>
+        )
+      case 'square':
+        return (
+          <svg
+            ref={cursorRef}
+            className={`${styles.cursor} cursor`}
+            width={`${mSize}`}
+            height={`${mSize}`}
+            viewBox={`0 0 ${mSize} ${mSize}`}
+          >
+            <rect
+              width={`${mSize}`}
+              height={`${mSize}`}
+              fill={fillColor || '#fff'}
+              stroke={strokeColor || '#000'}
+              strokeWidth={strokeWidth || 1}
+              className={`${styles.cursor} cursor__inner`}
+            />
+          </svg>
+        )
+      default:
+        return (
+          <svg
+            ref={cursorRef}
+            className={`${styles.cursor} cursor`}
+            width={`${mRadius}`}
+            height={`${mRadius}`}
+            viewBox={`0 0 ${mRadius} ${mRadius}`}
+          >
+            <circle
+              className={`${styles.cursor} cursor__inner`}
+              cx={`${mRadius / 2}`}
+              cy={`${mRadius / 2}`}
+              r={`${mRadius / 4}`}
+              fill={fillColor || '#000'}
+              stroke={strokeColor || '#000'}
+              strokeWidth={strokeWidth || 1}
+            />
+          </svg>
+        )
+    }
+  }
+
+  return <React.Fragment>{renderShape()}</React.Fragment>
 }
 
 export default SmoothCursor

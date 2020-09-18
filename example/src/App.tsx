@@ -17,7 +17,9 @@ const App = () => {
         fillColor='#e20c6a'
         strokeColor='#000'
         strokeWidth={1}
-        cursorRadius={25}
+        circleRadius={25}
+        shape='circle'
+        smoothness={0.2}
       />
     </Fragment>
   )

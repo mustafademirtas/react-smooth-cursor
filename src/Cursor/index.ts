@@ -16,18 +16,24 @@ export default class Cursor {
   }
 
   onMouseMoveEv: () => void
+  smoothness: number
 
-  constructor(el: SVGSVGElement) {
+  constructor(el: SVGSVGElement, smootness: number) {
     this.DOM = { el: el }
     this.DOM.el.style.opacity = 0
+    this.smoothness = 0.2
 
     this.bounds = this.DOM.el.getBoundingClientRect()
 
+    if (smootness > 1) this.smoothness = 1
+    else if (smootness < 0) this.smoothness = 0
+    else this.smoothness = smootness
+
     this.renderedStyles = {
-      tx: { previous: 0, current: 0, amt: 0.2 },
-      ty: { previous: 0, current: 0, amt: 0.2 },
-      scale: { previous: 1, current: 1, amt: 0.2 },
-      opacity: { previous: 1, current: 1, amt: 0.2 }
+      tx: { previous: 0, current: 0, amt: this.smoothness },
+      ty: { previous: 0, current: 0, amt: this.smoothness },
+      scale: { previous: 1, current: 1, amt: this.smoothness },
+      opacity: { previous: 1, current: 1, amt: this.smoothness }
     }
 
     this.onMouseMoveEv = () => {
