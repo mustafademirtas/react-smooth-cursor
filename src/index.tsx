@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Cursor from './Cursor'
-import styles from './styles.module.css'
+import { AlienShape, CircleShape, SquareShape } from './CursorShapes'
+// import styles from './styles.module.css'
 
 const bindCursorEvent = (cursor: Cursor, bindClasses: string[]) => {
   if (!bindClasses) return
@@ -27,15 +28,19 @@ const unbindCursorEvent = (cursor: Cursor, bindClasses: string[]) => {
 }
 
 export interface SmoothCursorProps {
-  shape?: 'circle' | 'square'
+  shape?: 'circle' | 'square' | 'alien'
   bindClasses?: string[]
   fillColor?: string
   strokeColor?: string
   strokeWidth?: number
   smoothness?: number
+  endScale?: number
+  endOpacity?: number
 
   circleRadius?: number
-  squareSize?: number
+  // squareSize?: number
+
+  shapeSize?: number
 }
 
 const SmoothCursor = ({
@@ -45,19 +50,32 @@ const SmoothCursor = ({
   strokeColor,
   strokeWidth,
   circleRadius,
-  squareSize,
-  smoothness
+  // squareSize,
+  smoothness,
+  shapeSize,
+  endScale,
+  endOpacity
 }: SmoothCursorProps) => {
   const cursorRef = React.useRef<SVGSVGElement>()
   const mRadius = circleRadius || 25
-  const mSize = squareSize || 25
+  // const mSize = squareSize || 25
   const mShape = shape || 'circle'
-  const mSmoothness = smoothness || 0.2
+
+  const mFillColor = fillColor || '#fff'
+  const mStrokeColor = strokeColor || '#000'
+  const mStrokeWidth = strokeWidth || 1
+
+  const mShapeSize = shapeSize || 25
 
   React.useEffect(() => {
     if (!cursorRef) return null
 
-    const mCursor = new Cursor(cursorRef.current, mSmoothness)
+    const mCursor = new Cursor(
+      cursorRef.current,
+      smoothness,
+      endScale,
+      endOpacity
+    )
 
     bindCursorEvent(mCursor, bindClasses)
     return () => {
@@ -69,62 +87,43 @@ const SmoothCursor = ({
     switch (mShape) {
       case 'circle':
         return (
-          <svg
+          <CircleShape
             ref={cursorRef}
-            className={`${styles.cursor} cursor`}
-            width={`${mRadius}`}
-            height={`${mRadius}`}
-            viewBox={`0 0 ${mRadius} ${mRadius}`}
-          >
-            <circle
-              className={`${styles.cursor} cursor__inner`}
-              cx={`${mRadius / 2}`}
-              cy={`${mRadius / 2}`}
-              r={`${mRadius / 4}`}
-              fill={fillColor || '#fff'}
-              stroke={strokeColor || '#000'}
-              strokeWidth={strokeWidth || 1}
-            />
-          </svg>
+            radius={mRadius}
+            fillColor={mFillColor}
+            strokeColor={mStrokeColor}
+            strokeWidth={mStrokeWidth}
+          />
         )
       case 'square':
         return (
-          <svg
+          <SquareShape
             ref={cursorRef}
-            className={`${styles.cursor} cursor`}
-            width={`${mSize}`}
-            height={`${mSize}`}
-            viewBox={`0 0 ${mSize} ${mSize}`}
-          >
-            <rect
-              width={`${mSize}`}
-              height={`${mSize}`}
-              fill={fillColor || '#fff'}
-              stroke={strokeColor || '#000'}
-              strokeWidth={strokeWidth || 1}
-              className={`${styles.cursor} cursor__inner`}
-            />
-          </svg>
+            size={mShapeSize}
+            fillColor={mFillColor}
+            strokeColor={mStrokeColor}
+            strokeWidth={mStrokeWidth}
+          />
+        )
+      case 'alien':
+        return (
+          <AlienShape
+            ref={cursorRef}
+            size={mShapeSize}
+            fillColor={mFillColor}
+            strokeColor={mStrokeColor}
+            strokeWidth={mStrokeWidth}
+          />
         )
       default:
         return (
-          <svg
+          <CircleShape
             ref={cursorRef}
-            className={`${styles.cursor} cursor`}
-            width={`${mRadius}`}
-            height={`${mRadius}`}
-            viewBox={`0 0 ${mRadius} ${mRadius}`}
-          >
-            <circle
-              className={`${styles.cursor} cursor__inner`}
-              cx={`${mRadius / 2}`}
-              cy={`${mRadius / 2}`}
-              r={`${mRadius / 4}`}
-              fill={fillColor || '#000'}
-              stroke={strokeColor || '#000'}
-              strokeWidth={strokeWidth || 1}
-            />
-          </svg>
+            radius={mRadius}
+            fillColor={mFillColor}
+            strokeColor={mStrokeColor}
+            strokeWidth={mStrokeWidth}
+          />
         )
     }
   }

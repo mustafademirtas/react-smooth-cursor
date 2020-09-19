@@ -64,14 +64,16 @@ const Example = () => {
 
 ## General Props
 
-| Option        | Type      | Description                                  | Default     |
-| ------------- | --------- | -------------------------------------------- | ----------- |
-| `bindClasses` | string[ ] | Css classes which cursor will be animated on | `undefined` |
-| `shape`       | string    | Shape of cursor ("circle" or "square")       | `circle`    |
-| `fillColor`   | string    | Inside color of cursor                       | `#fff`      |
-| `strokeColor` | string    | Border color of cursor                       | `#000`      |
-| `strokeWidth` | number    | Border width of cursor                       | `1`         |
-| `smoothness`  | number    | Smooth movement value of cursor (0 - 1.0)    | `0.2`       |
+| Option        | Type      | Description                                     | Default     |
+| ------------- | --------- | ----------------------------------------------- | ----------- |
+| `bindClasses` | string[ ] | Css classes which cursor will be animated on    | `undefined` |
+| `shape`       | string    | Shape of cursor ("circle" or "square")          | `circle`    |
+| `fillColor`   | string    | Inside color of cursor                          | `#fff`      |
+| `strokeColor` | string    | Border color of cursor                          | `#000`      |
+| `strokeWidth` | number    | Border width of cursor                          | `1`         |
+| `smoothness`  | number    | Smooth movement value of cursor (0 - 1.0)       | `0.2`       |
+| `endScale`    | number    | Cursor scale animation to value (1 to infinity) | `4`         |
+| `endOpacity`  | number    | Cursor opacity animation to value(0 - 1.0)      | `0.2`       |
 
 ## Circle Cursor Props
 
@@ -81,9 +83,15 @@ const Example = () => {
 
 ## Square Cursor Props
 
-| Option       | Type   | Description | Default |
-| ------------ | ------ | ----------- | ------- |
-| `squareSize` | number | Square size | `25`    |
+| Option      | Type   | Description | Default |
+| ----------- | ------ | ----------- | ------- |
+| `shapeSize` | number | Square size | `25`    |
+
+## Alien Cursor Props
+
+| Option      | Type   | Description | Default |
+| ----------- | ------ | ----------- | ------- |
+| `shapeSize` | number | Alien size  | `25`    |
 
 ## License
 
