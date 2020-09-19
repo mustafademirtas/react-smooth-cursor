@@ -73,7 +73,7 @@ const Example = () => {
 | `strokeWidth` | number    | Border width of cursor                          | `1`         |
 | `smoothness`  | number    | Smooth movement value of cursor (0 - 1.0)       | `0.2`       |
 | `endScale`    | number    | Cursor scale animation to value (1 to infinity) | `4`         |
-| `endOpacity`  | number    | Cursor opacity animation to value(0 - 1.0)      | `0.2`       |
+| `endOpacity`  | number    | Cursor opacity animation to value (0 - 1.0)      | `0.2`       |
 
 ## Circle Cursor Props
 
