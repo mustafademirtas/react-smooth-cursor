@@ -38,8 +38,6 @@ export interface SmoothCursorProps {
   endOpacity?: number
 
   circleRadius?: number
-  // squareSize?: number
-
   shapeSize?: number
 }
 
@@ -50,7 +48,6 @@ const SmoothCursor = ({
   strokeColor,
   strokeWidth,
   circleRadius,
-  // squareSize,
   smoothness,
   shapeSize,
   endScale,
