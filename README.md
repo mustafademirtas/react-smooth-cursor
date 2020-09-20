@@ -34,7 +34,7 @@ class Example extends Component {
     return
     <SmoothCursor
       // Required
-      bindClasses={['animateOnClassName']}
+      selectors={['antValidCssSelector01','antValidCssSelector02']}
       // Optionals
       fillColor='#e20c6a'
       strokeColor='#000'
@@ -51,7 +51,7 @@ const Example = () => {
   return(
   <SmoothCursor
     // Required
-    bindClasses={['animateOnClassName']}
+    selectors={['antValidCssSelector01','antValidCssSelector02']}
     // Optionals
     fillColor='#e20c6a'
     strokeColor='#000'
