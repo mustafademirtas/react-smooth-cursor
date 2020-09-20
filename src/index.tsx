@@ -1,27 +1,26 @@
 import * as React from 'react'
 import Cursor from './Cursor'
 import { AlienShape, CircleShape, SquareShape } from './CursorShapes'
-// import styles from './styles.module.css'
 
-const bindCursorEvent = (cursor: Cursor, bindClasses: string[]) => {
-  if (!bindClasses) return
-  bindClasses.forEach((bindClass) => {
-    document.querySelectorAll('.' + bindClass).forEach((item) => {
+const bindCursorEvent = (cursor: Cursor, selectors: string[]) => {
+  if (!selectors) return
+  selectors.forEach((selector) => {
+    document.querySelectorAll(selector).forEach((item) => {
       item.addEventListener('mouseenter', cursor.enter)
     })
-    document.querySelectorAll('.' + bindClass).forEach((item) => {
+    document.querySelectorAll(selector).forEach((item) => {
       item.addEventListener('mouseleave', cursor.leave)
     })
   })
 }
 
-const unbindCursorEvent = (cursor: Cursor, bindClasses: string[]) => {
-  if (!bindClasses) return
-  bindClasses.forEach((bindClass) => {
-    document.querySelectorAll('.' + bindClass).forEach((item) => {
+const unbindCursorEvent = (cursor: Cursor, selectors: string[]) => {
+  if (!selectors) return
+  selectors.forEach((selector) => {
+    document.querySelectorAll(selector).forEach((item) => {
       item.removeEventListener('mouseenter', cursor.enter)
     })
-    document.querySelectorAll('.' + bindClass).forEach((item) => {
+    document.querySelectorAll(selector).forEach((item) => {
       item.removeEventListener('mouseleave', cursor.leave)
     })
   })
@@ -29,7 +28,7 @@ const unbindCursorEvent = (cursor: Cursor, bindClasses: string[]) => {
 
 export interface SmoothCursorProps {
   shape?: 'circle' | 'square' | 'alien'
-  bindClasses?: string[]
+  selectors?: string[]
   fillColor?: string
   strokeColor?: string
   strokeWidth?: number
@@ -43,7 +42,7 @@ export interface SmoothCursorProps {
 
 const SmoothCursor = ({
   shape,
-  bindClasses,
+  selectors,
   fillColor,
   strokeColor,
   strokeWidth,
@@ -73,9 +72,9 @@ const SmoothCursor = ({
       endOpacity
     )
 
-    bindCursorEvent(mCursor, bindClasses)
+    bindCursorEvent(mCursor, selectors)
     return () => {
-      unbindCursorEvent(mCursor, bindClasses)
+      unbindCursorEvent(mCursor, selectors)
     }
   }, [cursorRef])
 

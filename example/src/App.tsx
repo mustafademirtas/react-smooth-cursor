@@ -36,7 +36,7 @@ const App = () => {
       </div>
       {cursorType === 'circle' && (
         <SmoothCursor
-          bindClasses={['playground']}
+          selectors={['.playground', 'button']}
           fillColor='#e20c6a'
           strokeColor='#000'
           strokeWidth={1}
@@ -46,7 +46,7 @@ const App = () => {
       )}
       {cursorType === 'square' && (
         <SmoothCursor
-          bindClasses={['playground']}
+          selectors={['.playground']}
           fillColor='#e20c6a'
           strokeColor='#000'
           strokeWidth={1}
@@ -56,7 +56,7 @@ const App = () => {
       )}
       {cursorType === 'alien' && (
         <SmoothCursor
-          bindClasses={['playground']}
+          selectors={['.playground']}
           fillColor='#e20c6a'
           strokeColor='#000'
           strokeWidth={1}
