@@ -67,7 +67,7 @@ const Example = () => {
 | Option        | Type      | Description                                                    | Default     |
 | ------------- | --------- | -------------------------------------------------------------- | ----------- |
 | `selectors`   | string[ ] | Anys valid css selectors list which cursor will be animated on | `undefined` |
-| `shape`       | string    | Shape of cursor ("circle" or "square")                         | `circle`    |
+| `shape`       | string    | Shape of cursor ("circle", "square", "alien")                  | `circle`    |
 | `fillColor`   | string    | Inside color of cursor                                         | `#fff`      |
 | `strokeColor` | string    | Border color of cursor                                         | `#000`      |
 | `strokeWidth` | number    | Border width of cursor                                         | `1`         |
