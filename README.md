@@ -3,7 +3,7 @@
 > Smooth cursor library
 
 <div align="center">
-    <img src="screenshots/ScreenRecord001.gif" width="100%" />
+    <img src="screenshots/ScreenRecord01.gif" width="100%" />
 </div>
 
 [![NPM](https://img.shields.io/npm/v/react-smooth-cursor.svg)](https://www.npmjs.com/package/react-smooth-cursor) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![Build Status](https://travis-ci.org/mustafademirtas/react-smooth-cursor.svg?branch=master)](https://travis-ci.org/mustafademirtas/react-smooth-cursor)
