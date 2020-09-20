@@ -1,13 +1,14 @@
 import { gsap } from 'gsap'
 import { lerp, getMousePos } from './utils'
 
-// Track the mouse position
-let mouse = { x: 0, y: 0 }
-window.addEventListener('mousemove', (ev) => (mouse = getMousePos(ev)))
-
 export default class Cursor {
-  DOM: { el: any }
-  bounds: any
+  DOM: { el: SVGSVGElement }
+  bounds: DOMRect
+  onMouseMoveEv: () => void
+  smoothness: number
+  endScale: number
+  endOpacity: number
+  mouse: { x: number; y: number }
   renderedStyles: {
     tx: { previous: number; current: number; amt: number }
     ty: { previous: number; current: number; amt: number }
@@ -15,19 +16,20 @@ export default class Cursor {
     opacity: { previous: number; current: number; amt: number }
   }
 
-  onMouseMoveEv: () => void
-  smoothness: number
-  endScale: number
-  endOpacity: number
-
   constructor(
     el: SVGSVGElement,
     smootness?: number,
     endScale?: number,
     endOpacity?: number
   ) {
+    // Assign mouse positon initial value
+    this.mouse = { x: 0, y: 0 }
+
+    // Add "mousemove" event to window
+    window.addEventListener('mousemove', (ev) => (this.mouse = getMousePos(ev)))
+
     this.DOM = { el: el }
-    this.DOM.el.style.opacity = 0
+    this.DOM.el.style.opacity = '0'
     this.smoothness = smootness || 0.2
     this.endScale = endScale || 4
     this.endOpacity = endOpacity || 0.2
@@ -59,9 +61,9 @@ export default class Cursor {
 
     this.onMouseMoveEv = () => {
       this.renderedStyles.tx.previous = this.renderedStyles.tx.current =
-        mouse.x - this.bounds.width / 2
+        this.mouse.x - this.bounds.width / 2
       this.renderedStyles.ty.previous = this.renderedStyles.ty.previous =
-        mouse.y - this.bounds.height / 2
+        this.mouse.y - this.bounds.height / 2
       gsap.to(this.DOM.el, {
         duration: 0.9,
         ease: 'Power3.easeOut',
@@ -85,8 +87,8 @@ export default class Cursor {
   }
 
   render = () => {
-    this.renderedStyles.tx.current = mouse.x - this.bounds.width / 2
-    this.renderedStyles.ty.current = mouse.y - this.bounds.height / 2
+    this.renderedStyles.tx.current = this.mouse.x - this.bounds.width / 2
+    this.renderedStyles.ty.current = this.mouse.y - this.bounds.height / 2
 
     for (const key in this.renderedStyles) {
       this.renderedStyles[key].previous = lerp(
@@ -97,7 +99,7 @@ export default class Cursor {
     }
 
     this.DOM.el.style.transform = `translateX(${this.renderedStyles.tx.previous}px) translateY(${this.renderedStyles.ty.previous}px) scale(${this.renderedStyles.scale.previous})`
-    this.DOM.el.style.opacity = this.renderedStyles.opacity.previous
+    this.DOM.el.style.opacity = this.renderedStyles.opacity.previous.toString()
 
     requestAnimationFrame(() => this.render())
   }

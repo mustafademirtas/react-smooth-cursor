@@ -55,7 +55,6 @@ const SmoothCursor = ({
 }: SmoothCursorProps) => {
   const cursorRef = React.useRef<SVGSVGElement>()
   const mRadius = circleRadius || 25
-  // const mSize = squareSize || 25
   const mShape = shape || 'circle'
 
   const mFillColor = fillColor || '#fff'
