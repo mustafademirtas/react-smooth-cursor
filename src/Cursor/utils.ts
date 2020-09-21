@@ -5,6 +5,7 @@ const map = (x: number, a: number, b: number, c: number, d: number) =>
 // Linear interpolation
 const lerp = (a: number, b: number, n: number) => (1 - n) * a + n * b
 
+// Calculate window size
 const calcWinsize = () => {
   return { width: window.innerWidth, height: window.innerHeight }
 }
@@ -27,6 +28,7 @@ const getMousePos = (e: any) => {
   return { x: posx, y: posy }
 }
 
+// Calculate distance between two points
 const distance = (x1: number, y1: number, x2: number, y2: number) => {
   var a = x1 - x2
   var b = y1 - y2
